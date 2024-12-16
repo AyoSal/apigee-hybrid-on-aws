@@ -34,3 +34,15 @@ and have an output similar to the image below
 
 ## Apigee Hybrid Installation steps
 Now proceed with part 2 of the setup steps to install Apigee hybrid
+
+
+
+
+### Multiple clusters
+
+To create multiple clusters perform the following steps
+
+clone the repo to another folder (or copy existing and delete terraform state files and folder)
+
+edit the main.tf file by updating the vpc name, cluster name 
+edit the variables.tf by updating the aws region
