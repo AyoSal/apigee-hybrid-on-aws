@@ -46,3 +46,12 @@ clone the repo to another folder (or copy existing and delete terraform state fi
 
 edit the main.tf file by updating the vpc name, cluster name 
 edit the variables.tf by updating the aws region
+
+
+
+### Clean Up
+
+To perform a clean up of the aws resources created by terraform 
+Step 1. Delete the aws loadbalancers created ( these get created when the ingress is created and also another one when the kubernetes service in part 3 is created). Alternative to this stepw ould be to import the loadbalancers created manually with terraform import so terraform can manage the destruction of these going forward.
+
+Step 2. Run terraform destroy to delete the aws resources created by terraform 
