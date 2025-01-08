@@ -7,7 +7,7 @@ This is not an Officially Supported Google Product!
 
 
 The terraform configuration defines a new VPC in which to provision the cluster, and uses the public EKS module to create the required resources, including Auto Scaling Groups, security groups, and IAM Roles and Policies.
-Open the main.tf file to review the module configuration. The eks_managed_node_groups parameter configures the cluster with three nodes across two node groups.
+Open the main.tf file to review the module configuration. The eks_managed_node_groups parameter configures the cluster with three nodes across two node groups.  
 
 
 ## Getting Started
@@ -22,13 +22,19 @@ Run terraform init to initialise terraform
 
 ## Pre-Cluster Setup Steps  
 
-1. Perform part 1 of the Apigee Hybrid setup to create your APigee organization, environment and environment group  
+1. Perform steps 1,2 and 3 in part 1 of the Apigee Hybrid setup to create your APigee organization, environment and environment group described [here](https://cloud.google.com/apigee/docs/hybrid/v1.12/precog-overview)  
 2. Run aws configure - Run aws configure command to configure settings that the AWS Command Line Interface (AWS CLI) uses to interact with AWS. The credentials and config file are created/updated when you run the command aws configure. The credentials file is located at ~/.aws/credentials on Linux or macOS,  or at C:\Users\USERNAME\.aws\credentials on Windows.  
+   Output should be similar to below  
+   ![AWS Config](Images/aws-config.png)
+   
 3. Customise the terraform configuration files  
    3a. main.tf with your worker nodes and labels  
    3b. Customise terraform.tf  
    
-4. Run Terraform plan - and validate the list of resources to be created, there should be a count of 63 resources to be created in AWS.
+4. Run Terraform plan - and validate the list of resources to be created, there should be a count of 63 resources to be created in AWS. Output should be similar to below  
+
+   ![Terraform Plan](Images/tf-plan.png)  
+
    
 5. Run terraform apply to have the 63 resources created in AWS and eks cluster comes up 
 
@@ -41,11 +47,18 @@ aws eks --region $(terraform output -raw region) update-kubeconfig \
 ```
 
 Now you can run```kubectl get pods -A```
-and have an output similar to the image below  
+ to confirm the system pods have been created before you proceed.  
+ 
 
 ## Apigee Hybrid Installation steps  
 
-Now proceed with part 2 of the setup steps to install Apigee hybrid  
+Now proceed with part 2 of the setup steps to install Apigee hybrid described [here](https://cloud.google.com/apigee/docs/hybrid/v1.12/install-download-charts)   
+
+At the end of the steps to install Apigee hybrid along with the helm charts, the Apigee Runtime components would be created in the AWS EKS cluster as shown below  
+
+![Apigee Runtime in AWS](Images/aws-objects.png)
+
+
 
 
 
