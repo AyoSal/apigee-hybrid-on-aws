@@ -1,5 +1,5 @@
 ## Disclaimer
-This is not an Officially Supported Google Product!
+This tool is open-source software. It is not an officially supported Google product. It is not a part of Apigee, or any other officially supported Google Product.
 
 
 
